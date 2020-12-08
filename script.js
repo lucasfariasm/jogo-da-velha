@@ -1,11 +1,14 @@
 var jogador, vencedor = null;
 var jogadorSelecionado = document.getElementById('jogador-selecionado');
 var vencedorSelecionado = document.getElementById('vencedor-selecionado');
-var quadrados = document.getElementsByClassName('quadrado');
 
 mudarJogador('X');
 
 function escolherQuadrado(id){
+  if(vencedor!== null){
+    return;
+  }
+
   var quadrado = document.getElementById(id);
   if (quadrado.innerHTML !== '-'){
     return;
@@ -58,6 +61,27 @@ function checaVencedor(){
   if(checaSequencia(quadrado1, quadrado4, quadrado7)){
     mudaCorQuadrado(quadrado1, quadrado4, quadrado7);
     mudarVencedor(quadrado4);
+    return;
+  }
+  if(checaSequencia(quadrado2, quadrado5, quadrado8)){
+    mudaCorQuadrado(quadrado2, quadrado5, quadrado8);
+    mudarVencedor(quadrado2);
+    return;
+  }
+  if(checaSequencia(quadrado3, quadrado6, quadrado9)){
+    mudaCorQuadrado(quadrado3, quadrado6, quadrado9);
+    mudarVencedor(quadrado3);
+    return;
+  }
+  if(checaSequencia(quadrado1, quadrado5, quadrado9)){
+    mudaCorQuadrado(quadrado1, quadrado5, quadrado9);
+    mudarVencedor(quadrado1);
+    return;
+  }
+  if(checaSequencia(quadrado3, quadrado5, quadrado7)){
+    mudaCorQuadrado(quadrado3, quadrado5, quadrado7);
+    mudarVencedor(quadrado3);
+    return;
   }
 }
 
@@ -79,4 +103,16 @@ function checaSequencia(quadrado1, quadrado2, quadrado3){
   }
 
   return eigual;
+}
+
+function reiniciar(){
+  vencedor = null;
+  vencedorSelecionado.innerHTML = '';
+
+  for(i=1; i <=9; i++ ){
+    var quadrado = document.getElementById(i);
+    quadrado.style.background = "#ddd";quadrado.style.color = "#ddd";
+    quadrado.innerHTML = '-';
+  }
+  mudarJogador('X');
 }
