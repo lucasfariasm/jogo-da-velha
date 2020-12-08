@@ -1,5 +1,6 @@
-var jogador = null;
+var jogador, vencedor = null;
 var jogadorSelecionado = document.getElementById('jogador-selecionado');
+var vencedorSelecionado = document.getElementById('vencedor-selecionado');
 var quadrados = document.getElementsByClassName('quadrado');
 
 mudarJogador('X');
@@ -20,6 +21,7 @@ function escolherQuadrado(id){
   }
 
   mudarJogador(jogador);
+  checaVencedor();
 }
 
 function mudarJogador(valor){
@@ -37,12 +39,42 @@ function checaVencedor(){
   var quadrado7 = document.getElementById('7')
   var quadrado8 = document.getElementById('8')
   var quadrado9 = document.getElementById('9')
+
+  if(checaSequencia(quadrado1, quadrado2, quadrado3)){
+    mudaCorQuadrado(quadrado1, quadrado2, quadrado3);
+    mudarVencedor(quadrado1);
+    return;
+  }
+  if(checaSequencia(quadrado4, quadrado5, quadrado6)){
+    mudaCorQuadrado(quadrado4, quadrado5, quadrado6);
+    mudarVencedor(quadrado4);
+    return;
+  }
+  if(checaSequencia(quadrado7, quadrado8, quadrado9)){
+    mudaCorQuadrado(quadrado7, quadrado8, quadrado9);
+    mudarVencedor(quadrado7);
+    return;
+  }
+  if(checaSequencia(quadrado1, quadrado4, quadrado7)){
+    mudaCorQuadrado(quadrado1, quadrado4, quadrado7);
+    mudarVencedor(quadrado4);
+  }
 }
 
+function mudarVencedor(quadrado){
+  vencedor = quadrado.innerHTML;
+  vencedorSelecionado.innerHTML = vencedor;
+}
+
+function mudaCorQuadrado(quadrado1, quadrado2, quadrado3){
+  quadrado1.style.background = '#0f0';
+  quadrado2.style.background = '#0f0';
+  quadrado3.style.background = '#0f0';
+}
 function checaSequencia(quadrado1, quadrado2, quadrado3){
   var eigual = false;
 
-  if(quadrado1.innerHTML === quadrado2.innerHTML && quadrado2.innerHTML === quadrado3.innerHTML){
+  if(quadrado1.innerHTML !== '-' && quadrado1.innerHTML === quadrado2.innerHTML && quadrado2.innerHTML === quadrado3.innerHTML){
     eigual = true;
   }
 
