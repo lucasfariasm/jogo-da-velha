@@ -1,17 +1,19 @@
 body {
   text-align: center;
+  background-color: black;
+  color: white;
 }
 
 .quadrado {
   text-align: center;
   width: 50px;
-  background: #ddd;
+  background: #222;
   display: inline-block;
   padding: 32px;
   font-size: 60px;
   margin: 5px;
   cursor: pointer;
-  color: #ddd;
+  color: #222;
 }
 
 .jogador, .vencedor {
